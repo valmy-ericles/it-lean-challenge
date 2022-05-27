@@ -28,4 +28,10 @@ export const RightSection = styled.div`
     height: 50px;
     cursor: pointer;
   }
+
+  .avatar {
+    border-radius: 50%;
+    height: 30px;
+    margin-right: 5px;
+  }
 `

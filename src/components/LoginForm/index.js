@@ -8,11 +8,13 @@ import { Divider } from "../Divider"
 import { InputBase } from "../Input"
 import { LoginButton } from "../Buttons/LoginButton"
 import { Container, ButtonsWrapper } from "./styles"
+import { useAuth } from "../../contexts/auth";
 
 export const LoginForm = () => {
+  const { setAuthData } = useAuth()
 
   useEffect(() => {
-    const app = initializeApp({
+    initializeApp({
       apiKey: "AIzaSyAB7w8uFNbTJEEqgtB8YD14AwHH75yvwjc",
       authDomain: "it-lean-auth.firebaseapp.com",
       projectId: "it-lean-auth",
@@ -33,8 +35,9 @@ export const LoginForm = () => {
         const token = credential.accessToken;
         const user = result.user;
         
-        localStorage.setItem('@it-lean-github', JSON.stringify({ token, user }))
-        
+        localStorage.setItem('@it-lean-auth', JSON.stringify({ token, user }))
+        setAuthData({ token, user })
+
         history.push('/dashboard')
       }).catch((error) => {
         const errorCode = error.code;
