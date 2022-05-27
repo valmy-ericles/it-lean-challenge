@@ -1,36 +1,25 @@
 import { LastPosts } from "../../components/Dashboard/LastPosts";
 import { NewPostForm } from "../../components/Dashboard/NewPost";
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
 import { Page } from "../../components/Page";
+import { usePosts } from "../../hooks/usePosts"
 
 const Dashboard = () => {
-  const [lastPosts, setLastPosts] = useState([])
-
-  useEffect(() => {
-    async function getLastPosts() {
-      const response = await api.get('/posts')
-      setLastPosts(response.data.slice(0,5))
-    }
-
-    getLastPosts()
-  },[])
-
+  const { posts, setPosts, loading, error } = usePosts('/posts')
 
   const removePostFromList = (id) => {
-    const newList = lastPosts.filter(post => post.id !== id)
-    setLastPosts(newList)
+    const newList = posts.filter(post => post.id !== id)
+    setPosts(newList)
   }
 
   const updatePostFromList = (post) => {
-    const index = lastPosts.findIndex(item => item.id === post.id)
-    let copyList = [...lastPosts]
+    const index = posts.findIndex(item => item.id === post.id)
+    let copyList = [...posts]
     copyList[index] = post
-    setLastPosts(copyList)
+    setPosts(copyList)
   }
 
   const addNewPostOnList = (post) => {
-    setLastPosts((prev) => ([post, ...prev]))
+    setPosts((prev) => ([post, ...prev]))
   }
   
   return (
@@ -38,7 +27,7 @@ const Dashboard = () => {
       <NewPostForm addNewPostOnList={addNewPostOnList}/>
 
       <LastPosts 
-        posts={lastPosts} 
+        posts={posts.slice(0, 5)} 
         removePostFromList={removePostFromList}
         updatePostFromList={updatePostFromList}
       />

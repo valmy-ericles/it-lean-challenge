@@ -1,36 +1,26 @@
+import { useEffect, useState } from "react";
 import { api } from "../services/api"
 
-const getPosts = async () => {
-  try {
-    const response = await api.get('/posts')
-    return { posts: response.data };
-  } catch (err) {
-    return err
-  }
-}
+export const usePosts = (url) => {
+  const [posts, setPosts] = useState([])
+  const [error, setError] = useState()
+  const [loading, setLoading] = useState(false)
 
-const createPost = async (title, body, userId) => {
-  try {
-    const response = await api.post('/posts', {
-      title,
-      body,
-      userId,
-    })
-    return { response };
-  } catch (err) {
-    return err
-  }
-}
+  useEffect(() => {
+    (
+      async function () {
+        try {
+          setLoading(true)
+          const response = await api.get(url)
+          setPosts(response.data)
+        } catch (err) {
+          setError(err)
+        } finally {
+          setLoading(false)
+        }
+      }
+    )()
+  }, [url])
 
-const deletePost = async (postId) => {
-  try {
-    const response = await api.delete(`/posts/${postId}`)
-    return { response };
-  } catch (err) {
-    return err
-  }
-}
-
-export function usePosts() {
-  return { getPosts, createPost, deletePost }
+  return { posts, setPosts, error, loading }
 }
