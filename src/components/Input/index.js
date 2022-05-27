@@ -1,5 +1,5 @@
 import { forwardRef } from "react"
-import { FormControl, FormErrorMessage, Input as InputStyled, TextArea } from "./styles"
+import { FormControl, FormErrorMessage, FormLabel, Input as InputStyled, TextArea } from "./styles"
 
 const Input = ({
   name,
@@ -12,6 +12,7 @@ const Input = ({
   if (type === "textarea") {
     return (
       <FormControl>
+        {label && <FormLabel>{label}</FormLabel>}
         <TextArea
           name={name}
           id={name}
@@ -29,6 +30,7 @@ const Input = ({
 
   return (
     <FormControl>
+      {label && <FormLabel>{label}</FormLabel>}
       <InputStyled
         name={name}
         id={name}

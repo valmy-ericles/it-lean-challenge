@@ -32,8 +32,16 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 224px;
-  max-width: 290px;
+  height: ${({ size }) => 
+    size === "sm" ? '224px' 
+    : size === "md" ? '400px' 
+    : size === "lg" ? '600px' : "224px"
+  };
+  max-width: ${({ size }) => 
+    size === "sm" ? '290px' 
+    : size === "md" ? '400px' 
+    : size === "lg" ? '600px' : "290px"
+  };
   padding: 0 0.8rem;
   width: 100%;
   animation: slide-down 0.2s ease 1;

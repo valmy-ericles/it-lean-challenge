@@ -2,6 +2,9 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   display: flex;
+  width: 100vw;
+  height: 93px;
+  margin-bottom: 93px;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
@@ -16,7 +19,6 @@ export const Container = styled.div`
 export const RightSection = styled.div`
   display: flex;
   align-items: center;
-
   span {
     margin-right: 1rem;
     font-size: 20px;
@@ -33,5 +35,11 @@ export const RightSection = styled.div`
     border-radius: 50%;
     height: 30px;
     margin-right: 5px;
+  }
+
+  @media(max-width: 576px) {
+    span {
+      font-size: 14px;
+    }
   }
 `

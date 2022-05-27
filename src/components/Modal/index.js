@@ -8,13 +8,13 @@ import {
   ModalTitle,
 } from "./styles";
 
-export const Modal = ({ title, children, active, hideModal }) => {
+export const Modal = ({ title, children, active, hideModal, size }) => {
   return (
     <>
       {active && (
         <ModalBlock>
           <ModalOverlay onClick={() => hideModal()}></ModalOverlay>
-          <ModalContainer>
+          <ModalContainer size={size}>
             <ModalHeader>
               <ModalTitle>{title}</ModalTitle>
             </ModalHeader>

@@ -1,13 +1,13 @@
-import { InputBase } from "../Input"
+import { InputBase } from "../../Input"
 import { ButtonWrapper, Form } from "./styles"
-import { ButtonDefault } from "../Buttons/DefaultButton"
+import { ButtonDefault } from "../../Buttons/DefaultButton"
 import { SpinnerCircular } from "spinners-react"
 
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import { toast } from 'react-toastify';
-import { api } from "../../services/api";
+import { api } from "../../../services/api";
 
 const postFormSchema = yup.object().shape({
   title: yup.string()

@@ -1,5 +1,5 @@
 import { LastPosts } from "../../components/Dashboard/LastPosts";
-import { NewPostForm } from "../../components/PostForm";
+import { NewPostForm } from "../../components/Dashboard/NewPost";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { Page } from "../../components/Page";
@@ -22,6 +22,13 @@ const Dashboard = () => {
     setLastPosts(newList)
   }
 
+  const updatePostFromList = (post) => {
+    const index = lastPosts.findIndex(item => item.id === post.id)
+    let copyList = [...lastPosts]
+    copyList[index] = post
+    setLastPosts(copyList)
+  }
+
   const addNewPostOnList = (post) => {
     setLastPosts((prev) => ([post, ...prev]))
   }
@@ -33,6 +40,7 @@ const Dashboard = () => {
       <LastPosts 
         posts={lastPosts} 
         removePostFromList={removePostFromList}
+        updatePostFromList={updatePostFromList}
       />
     </Page>
   )

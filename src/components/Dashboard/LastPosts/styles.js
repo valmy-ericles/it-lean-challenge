@@ -2,10 +2,16 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   padding: 2rem 1.5rem;
-
+  max-width: 100vw;
   span {
     font-size: 24px;
     font-weight: 700;
+  }
+
+  .hide-mobile {
+    @media(max-width: 576px) {
+      display: none;
+    }
   }
 `
 
@@ -74,15 +80,5 @@ export const WrapTableButtons = styled.div`
     button {
       margin: 0.2rem 0;
     }
-  }
-`
-
-export const WrapActionModalButtons = styled.div`
-  display: flex;
-  justify-content: space-around;
-
-  button {
-    height: 40px;
-    width: 100px;
   }
 `

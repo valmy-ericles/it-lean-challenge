@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { ActionButton } from "../../Buttons/ActionButtons"
 import { 
-  WrapActionModalButtons, 
   Container, 
   Table, 
   Thead, 
@@ -12,39 +11,14 @@ import {
   WrapTableButtons 
 } from "./styles"
 
-import { Modal } from "../../Modal"
-import { ButtonDefault } from "../../Buttons/DefaultButton"
-import { SpinnerCircular } from "spinners-react"
-import { api } from "../../../services/api"
-import { toast } from 'react-toastify';
+import { EditPostModal } from "../EditPost"
+import { ViewPostModal } from "../ViewPost"
+import { DeletePostModal } from "../DeletePost"
 
-export const LastPosts = ({ posts, removePostFromList }) => {
-  const [loading, setLoading] = useState(false)
+export const LastPosts = ({ posts, removePostFromList, updatePostFromList }) => {
+  const [postToView, setPostToView] = useState()
   const [postIdToDelete, setPostIdToDelete] = useState()
-
-  function handleDeletePost(postId) {
-    setPostIdToDelete(postId)
-  }
-
-  const deletePost = async (id) => {
-    try {
-      setLoading(true)
-      await api.delete(`/posts/${id}`)
-      
-      setLoading(false)
-
-      removePostFromList(id)
-
-      setPostIdToDelete(null)
-
-      toast.success("Post deletado com sucesso!", {
-        position: toast.POSITION.TOP_RIGHT
-      });
-    } catch (err) {
-      setLoading(false)
-      return err
-    }
-  }
+  const [postToEdit, setPostToEdit] = useState()
 
   return (
     <>
@@ -55,7 +29,7 @@ export const LastPosts = ({ posts, removePostFromList }) => {
             <Tr>
               <Th>ID</Th>
               <Th>Título</Th>
-              <Th>Descrição</Th>
+              <Th className="hide-mobile">Descrição</Th>
               <Th>Ações</Th>
             </Tr>
           </Thead>
@@ -65,16 +39,16 @@ export const LastPosts = ({ posts, removePostFromList }) => {
               <Tr key={post.id}>
                 <Td>{post.id}</Td>
                 <Td>{post.title}</Td>
-                <Td>{post.body}</Td>
+                <Td className="hide-mobile">{post.body}</Td>
                 <Td className="action-buttons">
                   <WrapTableButtons>
-                    <ActionButton color="#27D26B">
+                    <ActionButton color="#27D26B" onClick={() => setPostToView(post)}>
                       Visualizar
                     </ActionButton>
-                    <ActionButton color="#14181A">
+                    <ActionButton color="#14181A" onClick={() => setPostToEdit(post)}>
                       Editar
                     </ActionButton>
-                    <ActionButton color="#D22730" onClick={() => handleDeletePost(post.id)}>
+                    <ActionButton color="#D22730" onClick={() => setPostIdToDelete(post.id)}>
                       Deletar
                     </ActionButton>
                   </WrapTableButtons>
@@ -85,22 +59,27 @@ export const LastPosts = ({ posts, removePostFromList }) => {
         </Table>
       </Container>
 
-      <Modal
+      <ViewPostModal
+        title={`${postToView?.title.slice(0.20)}...`}
+        show={!!postToView}
+        onClose={() => setPostToView()}
+        post={postToView}
+      />
+
+      <EditPostModal 
+        show={!!postToEdit}
+        onClose={() => setPostToEdit()}
+        postToEdit={postToEdit}
+        updatePostFromList={updatePostFromList}
+      />
+
+      <DeletePostModal
         title="Excluir Post"
-        active={!!postIdToDelete}
-        hideModal={() => setPostIdToDelete(null)}
-      >
-
-        <WrapActionModalButtons>
-          <ButtonDefault color="#14181A" onClick={() => setPostIdToDelete(null)}>
-            Cancelar
-          </ButtonDefault>
-          <ButtonDefault color="#D22730" onClick={() => deletePost(postIdToDelete)}>
-            { loading ? <SpinnerCircular size={30} color="white" secondaryColor="#D22730"/> : 'Deletar' }
-          </ButtonDefault>
-        </WrapActionModalButtons>
-      </Modal>
-
+        show={!!postIdToDelete}
+        onClose={() => setPostIdToDelete()}
+        id={postIdToDelete}
+        removePostFromList={removePostFromList} 
+      />
     </>
   )
 }
