@@ -39,6 +39,7 @@ export const Th = styled.th`
 
 export const Tbody = styled.tbody`
   tr {
+    text-align: center;
     border-bottom: 1px solid black;
   }
 
@@ -49,8 +50,39 @@ export const Tbody = styled.tbody`
     font-size: 16px;
     line-height: 21px;
   }
+
+  .action-buttons {
+    text-align: center;
+    margin: auto;
+  }
 `
 
 export const Td = styled.td`
 
+`
+
+export const WrapTableButtons = styled.div`
+  display: flex;
+  
+  button {
+    margin: 0 0.5rem;
+  }
+
+  @media(max-width: 1024px) {
+    flex-direction: column;
+
+    button {
+      margin: 0.2rem 0;
+    }
+  }
+`
+
+export const WrapActionModalButtons = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    height: 40px;
+    width: 100px;
+  }
 `

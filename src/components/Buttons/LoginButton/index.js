@@ -1,11 +1,11 @@
 import { Button } from "./styles"
-import GithubIcon from "../../../../assets/images/github-icon.svg"
+import GithubIcon from "../../../assets/images/github-icon.svg"
 
-export const LoginButton = ({ children, isGithub = false }) => {
+export const LoginButton = ({ children, isGithub = false, ...rest }) => {
 
   if (isGithub) {
     return (
-      <Button isGithub>
+      <Button isGithub {...rest}>
         <img src={GithubIcon} alt="Login Github" />
         {children}
       </Button>
@@ -13,7 +13,7 @@ export const LoginButton = ({ children, isGithub = false }) => {
   }
 
   return (
-    <Button>
+    <Button {...rest}>
       {children}
     </Button>
   )

@@ -25,9 +25,12 @@ export const Input = styled.input`
     opacity: 1;
   }
 
+  border: ${({ error }) => error ? '2px solid red' : ''};
 `
 
 export const FormErrorMessage = styled.div`
+  color: red;
+  margin-left: 3px;
 `
 
 export const TextArea = styled.textarea`
@@ -37,4 +40,6 @@ export const TextArea = styled.textarea`
 
   padding: 1rem 1.5rem;
   resize: vertical;
+
+  border: ${({ error }) => error ? '2px solid red' : ''};
 `
