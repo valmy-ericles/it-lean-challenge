@@ -30,7 +30,7 @@ interface EditPostModalProps {
   show: boolean;
   onClose: () => void;
   postToEdit: PostProps;
-  updatePostFromList: (post:PostProps) => void;
+  updatePostFromList: (post: PostProps) => void;
 }
 
 interface DataSubmitProps {
@@ -38,7 +38,7 @@ interface DataSubmitProps {
   description: string;
 }
 
-export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList }:EditPostModalProps) => {
+export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList }: EditPostModalProps) => {
   const { register, handleSubmit, formState, setValue } = useForm({
     resolver: yupResolver(postFormSchema)
   })
@@ -48,7 +48,7 @@ export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList }:
 
   const { errors } = formState
 
-  const handleSubmitPost = async (data:DataSubmitProps) => {
+  const handleSubmitPost = async (data: DataSubmitProps) => {
     const { title, description } = data
 
     try {
@@ -105,12 +105,14 @@ export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList }:
         </WrapInputs>
 
         <WrapActionModalButtons>
-          <ButtonDefault color="#14181A" onClick={() => onClose()}>
-            Cancelar
-          </ButtonDefault>
-          <ButtonDefault color="#D22730" type="submit">
-            {formState.isSubmitting ? <SpinnerCircular size={30} color="white" secondaryColor="#D22730" /> : 'Salvar'}
-          </ButtonDefault>
+          <div>
+            <ButtonDefault color="#14181A" onClick={() => onClose()}>
+              Cancelar
+            </ButtonDefault>
+            <ButtonDefault color="#D22730" type="submit">
+              {formState.isSubmitting ? <SpinnerCircular size={30} color="white" secondaryColor="#D22730" /> : 'Salvar'}
+            </ButtonDefault>
+          </div>
         </WrapActionModalButtons>
       </Form>
     </Modal>
