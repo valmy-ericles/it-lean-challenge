@@ -1,5 +1,9 @@
 import styled from "styled-components"
 
+type GithubType = {
+  isGithub?: boolean;
+}
+
 export const Button = styled.button`
   display: flex;
   padding: 1rem 1.5rem;
@@ -14,7 +18,7 @@ export const Button = styled.button`
   line-height: 26px;
 
   color: white;
-  background-color: ${({ isGithub }) => isGithub ? '#171515' : '#D22730'};
+  background-color: ${({ isGithub }:GithubType) => isGithub ? '#171515' : '#D22730'};
   cursor: pointer;
 
   img {

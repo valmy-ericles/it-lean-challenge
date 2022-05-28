@@ -9,6 +9,16 @@ import { useForm } from "react-hook-form"
 import { toast } from 'react-toastify';
 import { api } from "../../../services/api";
 
+type PostProps = {
+  id: number;
+  title: string;
+  body: string;
+}
+
+interface NewPostFormProps {
+  addNewPostOnList: (post: PostProps) => void;
+}
+
 const postFormSchema = yup.object().shape({
   title: yup.string()
     .required('Título obrigatório'),
@@ -17,7 +27,7 @@ const postFormSchema = yup.object().shape({
   .min(10, "Descrição precisa ter no mínimo 10 caracteres"),
 })
 
-export const NewPostForm = ({ addNewPostOnList }) => {
+export const NewPostForm = ({ addNewPostOnList }: NewPostFormProps) => {
   const { register, handleSubmit, formState, reset } = useForm({
     resolver: yupResolver(postFormSchema)
   })
@@ -38,7 +48,7 @@ export const NewPostForm = ({ addNewPostOnList }) => {
         id: Math.floor(Math.random() * 200),
         title,
         body: description,
-      }
+      } as PostProps
 
       addNewPostOnList(newPost)
       reset()

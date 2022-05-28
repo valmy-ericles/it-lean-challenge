@@ -48,9 +48,8 @@ export const LoginForm = () => {
     <Container>
       <span>Login</span>
 
-      <InputBase type="text" placeholder="Digite seu email" label="Email" />
-      <InputBase type="password" placeholder="Digite sua senha" label="Senha" />
-
+      <InputBase name="email" type="text" placeholder="Digite seu email" label="Email" />
+      <InputBase name="password" type="password" placeholder="Digite sua senha" label="Senha" />
 
       <ButtonsWrapper>
         <LoginButton>

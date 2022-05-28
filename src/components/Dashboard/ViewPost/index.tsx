@@ -3,7 +3,20 @@ import { InputBase } from "../../Input"
 import { ButtonDefault } from "../../Buttons/DefaultButton"
 import { Form, WrapActionModalButtons, WrapInputs } from "./styles"
 
-export const ViewPostModal = ({ title, show, onClose, post }) => {
+type PostProps = {
+  title: string;
+  body: string;
+  userId: number;
+}
+
+interface ViewPostModalProps {
+  title: string;
+  show: boolean;
+  onClose: () => void;
+  post: PostProps;
+}
+
+export const ViewPostModal = ({ title, show, onClose, post }: ViewPostModalProps) => {
   return (
     <Modal
       title={title}

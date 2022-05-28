@@ -1,7 +1,14 @@
 import { Button } from "./styles"
 import GithubIcon from "../../../assets/images/github-icon.svg"
+import { ReactNode } from "react"
 
-export const LoginButton = ({ children, isGithub = false, ...rest }) => {
+interface LoginButtonProps {
+  children: ReactNode;
+  isGithub?: boolean;
+  onClick?: () => void;
+}
+
+export const LoginButton = ({ children, isGithub = false, ...rest }:LoginButtonProps) => {
 
   if (isGithub) {
     return (

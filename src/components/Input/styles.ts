@@ -1,5 +1,9 @@
 import styled from "styled-components"
 
+type ErrorType = {
+  error: boolean;
+}
+
 export const FormControl = styled.div`
   margin-bottom: 2rem;
 `
@@ -25,7 +29,7 @@ export const Input = styled.input`
     opacity: 1;
   }
 
-  border: ${({ error }) => error ? '2px solid red' : ''};
+  border: ${({ error }: ErrorType) => error ? '2px solid red' : ''};
 `
 
 export const FormErrorMessage = styled.div`
@@ -41,5 +45,5 @@ export const TextArea = styled.textarea`
   padding: 1rem 1.5rem;
   resize: vertical;
 
-  border: ${({ error }) => error ? '2px solid red' : ''};
+  border: ${({ error }: ErrorType) => error ? '2px solid red' : ''};
 `

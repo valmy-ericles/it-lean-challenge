@@ -19,7 +19,26 @@ const postFormSchema = yup.object().shape({
     .min(10, "Descrição precisa ter no mínimo 10 caracteres"),
 })
 
-export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList }) => {
+type PostProps = {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}
+
+interface EditPostModalProps {
+  show: boolean;
+  onClose: () => void;
+  postToEdit: PostProps;
+  updatePostFromList: (post:PostProps) => void;
+}
+
+interface DataSubmitProps {
+  title: string;
+  description: string;
+}
+
+export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList }:EditPostModalProps) => {
   const { register, handleSubmit, formState, setValue } = useForm({
     resolver: yupResolver(postFormSchema)
   })
@@ -29,7 +48,7 @@ export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList })
 
   const { errors } = formState
 
-  const handleSubmitPost = async (data) => {
+  const handleSubmitPost = async (data:DataSubmitProps) => {
     const { title, description } = data
 
     try {

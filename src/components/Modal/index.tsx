@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   ModalBlock,
   ModalBody,
@@ -8,7 +8,15 @@ import {
   ModalTitle,
 } from "./styles";
 
-export const Modal = ({ title, children, active, hideModal, size }) => {
+interface ModalProps {
+  title: string;
+  children: ReactNode;
+  active: boolean;
+  size?: string;
+  hideModal: () => void;
+}
+
+export const Modal = ({ title, children, active, hideModal, size }: ModalProps) => {
   return (
     <>
       {active && (

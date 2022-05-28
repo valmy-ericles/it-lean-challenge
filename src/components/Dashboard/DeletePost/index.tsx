@@ -1,12 +1,21 @@
 import { ButtonDefault } from "../../Buttons/DefaultButton"
-import { Modal } from "../../Modal"
 import { WrapActionModalButtons } from "./styles"
 import { SpinnerCircular } from "spinners-react"
 import { toast } from 'react-toastify';
-import { api } from "../../../services/api";
+import { Modal } from "../../Modal"
 import { useState } from "react";
 
-export const DeletePostModal = ({ show, onClose, title, id, removePostFromList }) => {
+import { api } from "../../../services/api";
+
+interface DeletePostModalProps {
+  show: boolean;
+  title: string;
+  id: number;
+  onClose: () => void;
+  removePostFromList: (id:number) => void;
+}
+
+export const DeletePostModal = ({ show, onClose, title, id, removePostFromList }:DeletePostModalProps) => {
   const [loading, setLoading] = useState(false)
 
   const deletePost = async () => {

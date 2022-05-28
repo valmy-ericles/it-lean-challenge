@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type SizeProp = {
+  size: string;
+}
+
 export const ModalBlock = styled.div`
   align-items: center;
   bottom: 0;
@@ -32,12 +36,12 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: ${({ size }) => 
+  height: ${({ size }: SizeProp) => 
     size === "sm" ? '224px' 
     : size === "md" ? '400px' 
     : size === "lg" ? '600px' : "224px"
   };
-  max-width: ${({ size }) => 
+  max-width: ${({ size }: SizeProp) => 
     size === "sm" ? '290px' 
     : size === "md" ? '400px' 
     : size === "lg" ? '600px' : "290px"
