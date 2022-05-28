@@ -9,6 +9,7 @@ interface InputProps {
   error?: FieldError;
   placeholder: string;
   value?: string;
+  defaultValue?: string;
   rows?: number;
 }
 

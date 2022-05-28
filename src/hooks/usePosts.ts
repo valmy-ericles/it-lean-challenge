@@ -21,7 +21,7 @@ export const usePosts = (url:string) => {
         try {
           setLoading(true)
           const response = await api.get<PostResponse>(url)
-          setPosts(response.data)
+          setPosts(response.data.slice(0, 5))
         } catch (err) {
           setError(err)
         } finally {

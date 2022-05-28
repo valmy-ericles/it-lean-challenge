@@ -5,7 +5,7 @@ import { usePosts } from "../../hooks/usePosts"
 
 const Dashboard = () => {
   const { posts, setPosts, loading, error } = usePosts('/posts')
-
+  
   const removePostFromList = (id:number) => {
     const newList = posts.filter(post => post.id !== id)
     setPosts(newList)
@@ -27,7 +27,7 @@ const Dashboard = () => {
       <NewPostForm addNewPostOnList={addNewPostOnList}/>
 
       <LastPosts 
-        posts={posts.slice(0, 5)} 
+        posts={posts} 
         removePostFromList={removePostFromList}
         updatePostFromList={updatePostFromList}
       />
