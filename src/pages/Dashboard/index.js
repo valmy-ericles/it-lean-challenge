@@ -27,7 +27,7 @@ const Dashboard = () => {
       <NewPostForm addNewPostOnList={addNewPostOnList}/>
 
       <LastPosts 
-        posts={posts.slice(0, 5)} 
+        posts={posts} 
         removePostFromList={removePostFromList}
         updatePostFromList={updatePostFromList}
       />

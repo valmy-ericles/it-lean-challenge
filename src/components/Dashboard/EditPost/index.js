@@ -86,12 +86,14 @@ export const EditPostModal = ({ show, onClose, postToEdit, updatePostFromList })
         </WrapInputs>
 
         <WrapActionModalButtons>
-          <ButtonDefault color="#14181A" onClick={() => onClose()}>
-            Cancelar
-          </ButtonDefault>
-          <ButtonDefault color="#D22730" type="submit">
-            {formState.isSubmitting ? <SpinnerCircular size={30} color="white" secondaryColor="#D22730" /> : 'Salvar'}
-          </ButtonDefault>
+          <div>
+            <ButtonDefault color="#14181A" onClick={() => onClose()}>
+              Cancelar
+            </ButtonDefault>
+            <ButtonDefault color="#D22730" type="submit">
+              {formState.isSubmitting ? <SpinnerCircular size={30} color="white" secondaryColor="#D22730" /> : 'Salvar'}
+            </ButtonDefault>
+          </div>
         </WrapActionModalButtons>
       </Form>
     </Modal>

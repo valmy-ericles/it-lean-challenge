@@ -12,7 +12,7 @@ export const usePosts = (url) => {
         try {
           setLoading(true)
           const response = await api.get(url)
-          setPosts(response.data)
+          setPosts(response.data.slice(0, 5))
         } catch (err) {
           setError(err)
         } finally {

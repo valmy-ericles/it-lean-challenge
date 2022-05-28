@@ -18,7 +18,7 @@ export const ViewPostModal = ({ title, show, onClose, post }) => {
             label="Título"
             type="text"
             placeholder="Digite o título do posto"
-            value={post?.title}
+            defaultValue={post?.title}
           />
           <InputBase
             type="textarea"
@@ -26,7 +26,7 @@ export const ViewPostModal = ({ title, show, onClose, post }) => {
             name="description"
             placeholder="Digite a descrição do post..."
             rows={12}
-            value={post?.body}
+            defaultValue={post?.body}
           />
         </WrapInputs>
 
